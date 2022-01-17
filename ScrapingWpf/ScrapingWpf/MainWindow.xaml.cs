@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 // Selenium
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -19,14 +20,32 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ScrapingWpf
 {
-    /// <summary>
-    /// MainWindow.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class MainWindow : Window
     {
+
+        private static IWebDriver driver;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.reverbnation.com/");
+
+            var discoverButton = driver.FindElement(By.Id("menu-item-discover"));
+            discoverButton.Click();
+
+            var collections = driver.FindElements(By.ClassName("card__contents"));
+
+            foreach (var collection in collections)
+            {
+                Console.WriteLine(collection.Text);
+            }
         }
+
+        public void Scraping() { }
+
+
+
     }
 }
