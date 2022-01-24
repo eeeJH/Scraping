@@ -36,12 +36,15 @@ namespace ScrapingWpf
             ChromiumNetworkConditions conditions = new ChromiumNetworkConditions();
 
             driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.reverbnation.com/");
+            
+            //driver.Navigate().GoToUrl("https://www.reverbnation.com/");
+            driver.Navigate().GoToUrl("https://velog.io/");
 
+            /*
             var discoverButton = driver.FindElement(By.Id("menu-item-discover"));
             discoverButton.Click();
-
-            var collections = FindElements(By.ClassName("card__contents"));
+            */
+            var collections = FindElements(By.ClassName("description-wrapper"));
 
             foreach (var collection in collections)
             {
